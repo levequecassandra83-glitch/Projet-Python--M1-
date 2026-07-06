@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}La librairie des historiens{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+    <nav>
+        <a href="/" class="nav-logo">La librairie des historiens</a>
+        <div class="nav-links">
+            <a href="/">Accueil</a>
+            <a href="/articles/">Articles</a>
+            <a href="/projects/">Projets</a>
+            <a href="/apropos/">À propos</a>
+            <button class="theme-toggle" onclick="toggleTheme()">☀ / ☾</button>
+        </div>
+    </nav>
+
+    {% block contenu %}
+    {% endblock %}
+
+    <footer>
+        <p>Pageweb — La librairie des historiens</p>
+        <p>© 2026</p>
+    </footer>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('light');
+            localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+        }
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light');
+        }
+    </script>
+
+    <script>
+        const slides = [
+            'https://i.pinimg.com/736x/99/74/5c/99745c63e6f1fb188391f198966e81fa.jpg',
+            'https://i.pinimg.com/1200x/ff/d0/eb/ffd0eb3745c41b8dacc4fd7d8529d584.jpg',
+            'https://i.pinimg.com/1200x/f1/ed/af/f1edaf89fa6320fca25e16efa20d9525.jpg',
+            'https://i.pinimg.com/1200x/a0/c1/ee/a0c1eec394bf9081679b7aed9cfe7814.jpg',
+        ];
+
+        let current = 0;
+        let activeLayer = 1;
+
+        function setupHero() {
+            const bg1 = document.getElementById('hero-bg-1');
+            const bg2 = document.getElementById('hero-bg-2');
+            if (!bg1 || !bg2) return;
+            bg1.style.backgroundImage = `url('${slides[0]}')`;
+            bg1.style.opacity = '1';
+            bg2.style.opacity = '0';
+        }
+
+        function goToSlide(index) {
+            const bg1 = document.getElementById('hero-bg-1');
+            const bg2 = document.getElementById('hero-bg-2');
+            if (!bg1 || !bg2) return;
+
+            current = index;
+            const showLayer = activeLayer === 1 ? bg2 : bg1;
+            const hideLayer = activeLayer === 1 ? bg1 : bg2;
+
+            showLayer.style.backgroundImage = `url('${slides[index]}')`;
+            showLayer.style.transform = 'translateX(0)';
+            showLayer.style.opacity = '1';
+            hideLayer.style.transform = 'translateX(-40px)';
+            hideLayer.style.opacity = '0';
+
+            activeLayer = activeLayer === 1 ? 2 : 1;
+
+            document.querySelectorAll('.bulle').forEach((b, i) => {
+                b.classList.toggle('active', i === index);
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setupHero();
+            setInterval(() => {
+                current = (current + 1) % slides.length;
+                goToSlide(current);
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

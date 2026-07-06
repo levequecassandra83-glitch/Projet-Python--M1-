@@ -1,0 +1,42 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Journal — Patrimonia{% endblock %}
+
+{% block contenu %}
+    <div class="section liste">
+        <div class="section-header">
+            <h1>Journal</h1>
+            <a href="/apropos/">À propos →</a>
+        </div>
+
+        <form method="GET" action="/articles/" class="search-form">
+            <input type="text" name="q" value="{{ query }}" placeholder="Rechercher un article...">
+            <button type="submit">Rechercher</button>
+        </form>
+
+        {% if query %}
+            <p class="result-info">Résultats pour « {{ query }} »</p>
+        {% endif %}
+
+        <div class="cards-grid">
+            {% for article in articles %}
+                <a href="/articles/{{ article.pk }}/" class="card card-img">
+                    {% if article.image %}
+                        <div class="card-img-wrap">
+                            <img src="{{ article.image.url }}" alt="{{ article.titre }}">
+                            <span class="card-tag-float">Article</span>
+                        </div>
+                    {% else %}
+                        <span class="card-tag">Article</span>
+                    {% endif %}
+                    <div class="card-body">
+                        <h2>{{ article.titre }}</h2>
+                        <p>{{ article.date|date:"d F Y" }}</p>
+                    </div>
+                </a>
+            {% empty %}
+                <p class="empty">Aucun résultat trouvé.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

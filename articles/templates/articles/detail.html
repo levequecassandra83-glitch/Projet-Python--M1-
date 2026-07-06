@@ -1,0 +1,21 @@
+{% extends 'core/base.html' %}
+{% load markdown_extras %}
+
+{% block title %}{{ article.titre }} — Patrimonia{% endblock %}
+
+{% block contenu %}
+    <div class="detail">
+        <h1>{{ article.titre }}</h1>
+        <p class="meta">{{ article.date|date:"d F Y" }} {% if article.tags %}— {{ article.tags }}{% endif %}</p>
+
+        {% if article.image %}
+            <img src="{{ article.image.url }}" alt="{{ article.titre }}">
+        {% endif %}
+
+        <div class="contenu-markdown">
+            {{ article.contenu|render_markdown }}
+        </div>
+
+        <a href="/articles/" class="retour">← Retour aux articles</a>
+    </div>
+{% endblock %}

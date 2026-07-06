@@ -1,0 +1,58 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Accueil — Patrimonia{% endblock %}
+
+{% block contenu %}
+<div class="hero">
+    <div class="hero-content">
+        <p class="hero-eyebrow">Musée numérique · Patrimoine · Histoire</p>
+        <h1>Patrimonia</h1>
+        <p class="hero-italic">Explorer le passé à travers des expériences numériques.</p>
+        <p class="hero-sub">Ce site rassemble des projets, des articles et des réflexions autour de la médiation patrimoniale.</p>
+        <div class="hero-btns">
+            <a href="/projets/" class="btn btn-full">Découvrir les projets</a>
+            <a href="/apropos/" class="btn">À propos</a>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-header">
+        <h2>Projets récents</h2>
+        <a href="/projets/">Voir tous les projets →</a>
+    </div>
+    <div class="cards-grid">
+        {% for project in derniers_projects %}
+            <a href="/projects/{{ project.pk }}/" class="card">
+                <span class="card-tag">Projet</span>
+                <div class="card-body">
+                    <h2>{{ project.titre }}</h2>
+                    <p>{{ project.description|truncatewords:20 }}</p>
+                </div>
+            </a>
+        {% empty %}
+            <p class="empty">Aucun projet pour le moment.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="section">
+    <div class="section-header">
+        <h2>Journal récent</h2>
+        <a href="/journal/">Voir le journal →</a>
+    </div>
+    <div class="cards-grid">
+        {% for article in derniers_articles %}
+            <a href="/articles/{{ article.pk }}/" class="card">
+                <span class="card-tag">Article</span>
+                <div class="card-body">
+                    <h2>{{ article.titre }}</h2>
+                    <p>{{ article.date|date:"d F Y" }}</p>
+                </div>
+            </a>
+        {% empty %}
+            <p class="empty">Aucun article pour le moment.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'core/base.html' %}
+
+{% block title %}Projets — Patrimonia{% endblock %}
+
+{% block contenu %}
+    <div class="section liste">
+        <div class="section-header">
+            <h1>Projets</h1>
+            <a href="/apropos/">À propos →</a>
+        </div>
+
+        <div class="cards-grid">
+            {% for project in projects %}
+                <a href="/projects/{{ project.pk }}/" class="card">
+                    <span class="card-tag">{{ project.type_project }}</span>
+                    <div class="card-body">
+                        <h2>{{ project.titre }}</h2>
+                        <p>{{ project.description|truncatewords:18 }}</p>
+                    </div>
+                </a>
+            {% empty %}
+                <p class="empty">Aucun projet pour le moment.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

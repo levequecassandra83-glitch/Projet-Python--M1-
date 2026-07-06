@@ -1,0 +1,189 @@
+{% extends 'core/base.html' %}
+
+{% block title %}À propos — La librairie des historiens{% endblock %}
+
+{% block contenu %}
+
+<div class="bento-page">
+
+    <!-- HERO CARD -->
+    <div class="bento-grid">
+
+        <div class="bento-card bento-hero-card">
+            <p class="bento-eyebrow">Raconter le passé.<br>Comprendre le présent.</p>
+            <h1>L'histoire prend vie grâce au numérique.</h1>
+            <a href="/projects/" class="bento-cta">Découvrir mes projets →</a>
+            <p class="bento-sub">Humanités numériques & valorisation du patrimoine</p>
+        </div>
+
+        <div class="bento-card bento-portrait-card">
+            <p class="bento-vertical-text">Histoire · Patrimoine · Numérique</p>
+            <div class="bento-portrait-content">
+                <h2>Étudier le passé<br>pour construire<br>l'avenir.</h2>
+                <p class="bento-portrait-sub">Explorer · Comprendre · Transmettre</p>
+            </div>
+        </div>
+
+        <div class="bento-card bento-skills-card">
+            <p class="bento-card-label">Mes compétences</p>
+            <div class="bento-skill-list">
+                <div class="bento-skill-item">
+                    <span class="bento-skill-icon">⌨️</span>
+                    <div>
+                        <strong>Développement web</strong>
+                        <span>HTML, CSS, Django</span>
+                    </div>
+                </div>
+                <div class="bento-skill-item">
+                    <span class="bento-skill-icon">🗄️</span>
+                    <div>
+                        <strong>Bases de données</strong>
+                        <span>SQL</span>
+                    </div>
+                </div>
+                <div class="bento-skill-item">
+                    <span class="bento-skill-icon">🌐</span>
+                    <div>
+                        <strong>Humanités numériques</strong>
+                        <span>Cartographie, visualisation</span>
+                    </div>
+                </div>
+                <div class="bento-skill-item">
+                    <span class="bento-skill-icon">📖</span>
+                    <div>
+                        <strong>Recherche historique</strong>
+                        <span>Patrimoine, analyse des sources</span>
+                    </div>
+                </div>
+                <div class="bento-skill-item">
+                    <span class="bento-skill-icon">📢</span>
+                    <div>
+                        <strong>Communication</strong>
+                        <span>Événementiel, gestion de projets</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bento-card bento-about-card">
+            <div class="bento-about-head">
+                <p class="bento-card-label">À propos</p>
+                <a href="#" class="bento-arrow-btn">→</a>
+            </div>
+            <p>Diplômée d'une licence d'Histoire à l'Université du Mans, avec une spécialisation en patrimoine en L3, je poursuis en master Humanités numériques.</p>
+            <p>Passionnée par l'histoire et le patrimoine, je conçois des outils numériques pour rendre le savoir historique plus accessible, visuel et interactif.</p>
+            <a href="#parcours" class="bento-link">En savoir plus ↗</a>
+        </div>
+
+        <div class="bento-card bento-parcours-card" id="parcours">
+            <div class="bento-about-head">
+                <p class="bento-card-label">Parcours</p>
+                <a href="#" class="bento-arrow-btn">→</a>
+            </div>
+            <div class="bento-timeline">
+                <div class="bento-tl-item">
+                    <span class="bento-tl-dot"></span>
+                    <div>
+                        <span class="bento-tl-date">2025 — 2026</span>
+                        <strong>Master Humanités numériques</strong>
+                        <span>(à venir)</span>
+                    </div>
+                </div>
+                <div class="bento-tl-item">
+                    <span class="bento-tl-dot"></span>
+                    <div>
+                        <span class="bento-tl-date">2023 — 2025</span>
+                        <strong>Licence Histoire</strong>
+                        <span>Université du Mans · Spécialisation patrimoine (L3)</span>
+                    </div>
+                </div>
+                <div class="bento-tl-item">
+                    <span class="bento-tl-dot"></span>
+                    <div>
+                        <span class="bento-tl-date">2022 — 2023</span>
+                        <strong>BTS Communication en alternance</strong>
+                        <span>Secteur événementiel</span>
+                    </div>
+                </div>
+                <div class="bento-tl-item">
+                    <span class="bento-tl-dot"></span>
+                    <div>
+                        <span class="bento-tl-date">2023</span>
+                        <strong>Stage en archéologie</strong>
+                        <span>Terrain, relevés et étude du patrimoine archéologique</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bento-card bento-projects-card">
+            <div class="bento-about-head">
+                <p class="bento-card-label">Projets en cours</p>
+                <a href="/projects/" class="bento-arrow-btn">→</a>
+            </div>
+            <div class="bento-project-main">
+                <div class="bento-project-img"></div>
+                <div class="bento-project-body">
+                    <h3>La Librairie des Historiens</h3>
+                    <p>Plateforme Django dédiée aux humanités numériques — articles, visualisations, cartographie.</p>
+                    <a href="/" class="bento-link">Voir le projet →</a>
+                </div>
+            </div>
+            <div class="bento-project-sub-grid">
+                <div class="bento-project-sub">Chronologies historiques</div>
+                <div class="bento-project-sub">Visualisations de données</div>
+                <div class="bento-project-sub">Patrimoine & médiation</div>
+            </div>
+        </div>
+
+        <div class="bento-card bento-tools-card">
+            <p class="bento-card-label">Outils & langages</p>
+            <div class="bento-tools-grid">
+                <span class="bento-tool bento-tool-orange">HTML</span>
+                <span class="bento-tool bento-tool-blue">CSS</span>
+                <span class="bento-tool bento-tool-yellow">JS</span>
+                <span class="bento-tool bento-tool-green">Django</span>
+                <span class="bento-tool bento-tool-grey">SQL</span>
+                <span class="bento-tool bento-tool-yellow2">Python</span>
+            </div>
+        </div>
+
+        <div class="bento-card bento-memoire-card">
+            <p class="bento-card-label">Mini-mémoire · L3 Histoire</p>
+            <h3>Du banquet à la vitrine</h3>
+            <p>L'oenochoé d'Ulysse et de Circé et la transformation de sens d'un objet antique.</p>
+            <div class="bento-tags">
+                <span>Histoire antique</span>
+                <span>Patrimoine</span>
+                <span>Muséologie</span>
+            </div>
+        </div>
+
+        <div class="bento-card bento-contact-card">
+            <p class="bento-card-label">Contact</p>
+            <p>En quête de projets passionnants ou de collaborations ? Discutons-en !</p>
+            <div class="bento-contact-links">
+                <span>📧 ton@email.com</span>
+                <span>📍 Le Mans, France</span>
+            </div>
+            <a href="mailto:ton@email.com" class="bento-cta-small">Me contacter →</a>
+        </div>
+
+        <div class="bento-card bento-philo-card">
+            <p class="bento-card-label">Ma philosophie</p>
+            <blockquote>Le numérique n'efface pas l'histoire, il lui donne de nouvelles façons d'être racontée et comprise.</blockquote>
+        </div>
+
+        <div class="bento-card bento-create-card">
+            <p class="bento-card-label">Ce que je crée</p>
+            <ul class="bento-create-list">
+                <li>🔍 Des outils pour explorer l'histoire autrement.</li>
+                <li>✨ Des expériences interactives et immersives.</li>
+                <li>🔗 Des projets qui relient recherche, technologie et transmission.</li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}
