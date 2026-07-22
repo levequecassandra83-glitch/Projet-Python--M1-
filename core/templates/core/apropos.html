@@ -1,10 +1,15 @@
 {% extends 'core/base.html' %}
+{% load static %}
 
 {% block title %}À propos — La librairie des historiens{% endblock %}
 
-{% block contenu %}
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
 
+{% block contenu %}
 <div class="bento-page">
+
 
     <!-- HERO CARD -->
     <div class="bento-grid">
@@ -100,17 +105,17 @@
                 <div class="bento-tl-item">
                     <span class="bento-tl-dot"></span>
                     <div>
-                        <span class="bento-tl-date">2022 — 2023</span>
-                        <strong>BTS Communication en alternance</strong>
-                        <span>Secteur événementiel</span>
+                        <span class="bento-tl-date">2025</span>
+                        <strong>Stage en archéologie</strong>
+                        <span>Terrain, relevés et étude du patrimoine archéologique</span>
                     </div>
                 </div>
                 <div class="bento-tl-item">
                     <span class="bento-tl-dot"></span>
                     <div>
-                        <span class="bento-tl-date">2023</span>
-                        <strong>Stage en archéologie</strong>
-                        <span>Terrain, relevés et étude du patrimoine archéologique</span>
+                        <span class="bento-tl-date">2022 — 2023</span>
+                        <strong>BTS Communication en alternance</strong>
+                        <span>Secteur événementiel</span>
                     </div>
                 </div>
             </div>

@@ -3,40 +3,64 @@
 {% block title %}Journal — Patrimonia{% endblock %}
 
 {% block contenu %}
-    <div class="section liste">
-        <div class="section-header">
+
+<div class="journal-page">
+
+    <div class="journal-hero">
+        <div class="journal-hero-text">
+            <span class="journal-eyebrow">Patrimonia · Journal</span>
             <h1>Journal</h1>
-            <a href="/apropos/">À propos →</a>
+            <p>Réflexions sur les humanités numériques, le patrimoine et la construction de projets historiques interactifs.</p>
         </div>
-
-        <form method="GET" action="/articles/" class="search-form">
+        <form method="GET" action="/articles/" class="journal-search">
             <input type="text" name="q" value="{{ query }}" placeholder="Rechercher un article...">
-            <button type="submit">Rechercher</button>
+            <button type="submit">→</button>
         </form>
+    </div>
 
-        {% if query %}
-            <p class="result-info">Résultats pour « {{ query }} »</p>
+    {% if query %}
+    <div class="journal-query">
+        Résultats pour "<strong>{{ query }}</strong>"
+    </div>
+    {% endif %}
+
+    <div class="journal-grid">
+        {% for article in articles %}
+
+        {% if forloop.first %}
+        <a href="/articles/{{ article.pk }}/" class="journal-card journal-card-featured">
+            {% if article.image %}
+            <div class="journal-card-img">
+                <img src="{{ article.image.url }}" alt="{{ article.titre }}">
+            </div>
+            {% endif %}
+            <div class="journal-card-body">
+                <span class="journal-tag">Article · {{ article.date|date:"d F Y" }}</span>
+                <h2>{{ article.titre }}</h2>
+                <p>{{ article.contenu|truncatewords:25 }}</p>
+                <span class="journal-read">Lire l'article →</span>
+            </div>
+        </a>
+        {% else %}
+        <a href="/articles/{{ article.pk }}/" class="journal-card journal-card-small">
+            {% if article.image %}
+            <div class="journal-card-img">
+                <img src="{{ article.image.url }}" alt="{{ article.titre }}">
+            </div>
+            {% endif %}
+            <div class="journal-card-body">
+                <span class="journal-tag">{{ article.date|date:"d F Y" }}</span>
+                <h2>{{ article.titre }}</h2>
+                <span class="journal-read">Lire →</span>
+            </div>
+        </a>
         {% endif %}
 
-        <div class="cards-grid">
-            {% for article in articles %}
-                <a href="/articles/{{ article.pk }}/" class="card card-img">
-                    {% if article.image %}
-                        <div class="card-img-wrap">
-                            <img src="{{ article.image.url }}" alt="{{ article.titre }}">
-                            <span class="card-tag-float">Article</span>
-                        </div>
-                    {% else %}
-                        <span class="card-tag">Article</span>
-                    {% endif %}
-                    <div class="card-body">
-                        <h2>{{ article.titre }}</h2>
-                        <p>{{ article.date|date:"d F Y" }}</p>
-                    </div>
-                </a>
-            {% empty %}
-                <p class="empty">Aucun résultat trouvé.</p>
-            {% endfor %}
-        </div>
+        {% empty %}
+        <p class="empty">Aucun article pour le moment.</p>
+        {% endfor %}
     </div>
+
+</div>
+
 {% endblock %}

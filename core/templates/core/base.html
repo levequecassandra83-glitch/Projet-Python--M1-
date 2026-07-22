@@ -3,18 +3,21 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}La librairie des historiens{% endblock %}</title>
+    <title>{% block title %}Patrimonia{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'core/style.css' %}">
 </head>
 <body>
     <nav>
-        <a href="/" class="nav-logo">La librairie des historiens</a>
+        <a href="/" class="nav-logo">Patrimonia</a>
         <div class="nav-links">
             <a href="/">Accueil</a>
-            <a href="/articles/">Articles</a>
+            <a href="/articles/">Journal</a>
             <a href="/projects/">Projets</a>
             <a href="/apropos/">À propos</a>
-            <button class="theme-toggle" onclick="toggleTheme()">☀ / ☾</button>
+            <button class="theme-toggle" onclick="toggleTheme()">
+                <span class="icon-light">☀</span>
+                <span class="icon-dark">☾</span>
+            </button>
         </div>
     </nav>
 
@@ -22,7 +25,7 @@
     {% endblock %}
 
     <footer>
-        <p>Pageweb — La librairie des historiens</p>
+        <p>Patrimonia — Histoire & Numérique</p>
         <p>© 2026</p>
     </footer>
 
@@ -60,19 +63,15 @@
             const bg1 = document.getElementById('hero-bg-1');
             const bg2 = document.getElementById('hero-bg-2');
             if (!bg1 || !bg2) return;
-
             current = index;
             const showLayer = activeLayer === 1 ? bg2 : bg1;
             const hideLayer = activeLayer === 1 ? bg1 : bg2;
-
             showLayer.style.backgroundImage = `url('${slides[index]}')`;
             showLayer.style.transform = 'translateX(0)';
             showLayer.style.opacity = '1';
             hideLayer.style.transform = 'translateX(-40px)';
             hideLayer.style.opacity = '0';
-
             activeLayer = activeLayer === 1 ? 2 : 1;
-
             document.querySelectorAll('.bulle').forEach((b, i) => {
                 b.classList.toggle('active', i === index);
             });
@@ -86,5 +85,29 @@
             }, 5000);
         });
     </script>
+
+    <script>
+        const allReveals = document.querySelectorAll('.clean-reveal, .clean-parcours-item, .clean-skill, .clean-interest, .clean-work');
+        const revObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('clean-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        allReveals.forEach(el => revObs.observe(el));
+
+        const allBars = document.querySelectorAll('.clean-skill-fill');
+        const barObs = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const w = entry.target.getAttribute('data-width');
+                    entry.target.style.width = w + '%';
+                }
+            });
+        }, { threshold: 0.3 });
+        allBars.forEach(bar => barObs.observe(bar));
+    </script>
+
 </body>
 </html>

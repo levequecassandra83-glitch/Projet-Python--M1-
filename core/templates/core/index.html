@@ -1,34 +1,77 @@
 {% extends 'core/base.html' %}
-
 {% block title %}Accueil — Patrimonia{% endblock %}
-
 {% block contenu %}
+
 <div class="hero">
+    <div class="hero-bg" id="hero-bg-1"></div>
+    <div class="hero-bg" id="hero-bg-2"></div>
     <div class="hero-content">
-        <p class="hero-eyebrow">Musée numérique · Patrimoine · Histoire</p>
-        <h1>Patrimonia</h1>
-        <p class="hero-italic">Explorer le passé à travers des expériences numériques.</p>
-        <p class="hero-sub">Ce site rassemble des projets, des articles et des réflexions autour de la médiation patrimoniale.</p>
+        <p class="hero-eyebrow">Heritage · Histoire · Numérique</p>
+        <h1>Explorer l'histoire<br>à travers des études<br>universitaires</h1>
+        <p class="hero-italic">L'histoire que les données racontent.</p>
+        <p class="hero-sub">Une plateforme où l'histoire rencontre la cartographie, la data et la visualisation.</p>
+        <div class="hero-bulles">
+            <div class="bulle active" onclick="goToSlide(0)"></div>
+            <div class="bulle" onclick="goToSlide(1)"></div>
+            <div class="bulle" onclick="goToSlide(2)"></div>
+            <div class="bulle" onclick="goToSlide(3)"></div>
+        </div>
         <div class="hero-btns">
-            <a href="/projets/" class="btn btn-full">Découvrir les projets</a>
-            <a href="/apropos/" class="btn">À propos</a>
+            <a href="/articles/" class="btn btn-full">Explorer les articles</a>
+            <a href="/projects/" class="btn">Voir les projets</a>
+        </div>
+    </div>
+</div>
+
+<div class="section carousel-section" style="background-image: url('https://i.pinimg.com/1200x/c2/18/9e/c2189e10ba621779581f7ed928c41d38.jpg');">
+    <div class="carousel-overlay"></div>
+    <div class="carousel-content">
+        <div class="section-header">
+            <h2>Derniers articles</h2>
+            <a href="/articles/">Voir tout →</a>
+        </div>
+        <div class="carousel-wrap">
+            <div class="carousel-track" id="carousel-track">
+                {% for article in derniers_articles %}
+                    <a href="/articles/{{ article.pk }}/" class="carousel-card">
+                        {% if article.image %}
+                            <img src="{{ article.image.url }}" alt="{{ article.titre }}">
+                        {% endif %}
+                        <div class="carousel-card-body">
+                            <span class="card-tag">Article</span>
+                            <h2>{{ article.titre }}</h2>
+                            <p>{{ article.date|date:"d F Y" }}</p>
+                        </div>
+                    </a>
+                {% empty %}
+                    <p class="empty">Aucun article pour le moment.</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
 </div>
 
 <div class="section">
     <div class="section-header">
-        <h2>Projets récents</h2>
-        <a href="/projets/">Voir tous les projets →</a>
+        <h2>Projets</h2>
+        <a href="/projects/">Voir tout →</a>
     </div>
-    <div class="cards-grid">
+    <div class="projects-list">
         {% for project in derniers_projects %}
-            <a href="/projects/{{ project.pk }}/" class="card">
-                <span class="card-tag">Projet</span>
-                <div class="card-body">
+            <a href="/projects/{{ project.pk }}/" class="project-row">
+                <div class="project-row-img">
+                    {% if project.image %}
+                        <img src="{{ project.image.url }}" alt="{{ project.titre }}">
+                    {% else %}
+                        <div class="project-row-placeholder">{{ project.type_project|first|upper }}</div>
+                    {% endif %}
+                </div>
+                <div class="project-row-body">
+                    <span class="card-tag">{{ project.type_project }}</span>
                     <h2>{{ project.titre }}</h2>
                     <p>{{ project.description|truncatewords:20 }}</p>
                 </div>
+                <div class="project-row-arrow">→</div>
             </a>
         {% empty %}
             <p class="empty">Aucun projet pour le moment.</p>
@@ -36,23 +79,4 @@
     </div>
 </div>
 
-<div class="section">
-    <div class="section-header">
-        <h2>Journal récent</h2>
-        <a href="/journal/">Voir le journal →</a>
-    </div>
-    <div class="cards-grid">
-        {% for article in derniers_articles %}
-            <a href="/articles/{{ article.pk }}/" class="card">
-                <span class="card-tag">Article</span>
-                <div class="card-body">
-                    <h2>{{ article.titre }}</h2>
-                    <p>{{ article.date|date:"d F Y" }}</p>
-                </div>
-            </a>
-        {% empty %}
-            <p class="empty">Aucun article pour le moment.</p>
-        {% endfor %}
-    </div>
-</div>
 {% endblock %}
